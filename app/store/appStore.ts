@@ -1,3 +1,5 @@
+'use client';
+
 import {configureStore} from "@reduxjs/toolkit";
 import {rootReducer} from "@/app/store/appReducer";
 

@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
+import ProductCard from "@/components/shared/product-card";
 import {Title} from "@/components/shared/title";
 import {cn} from "@/lib/utils";
-import ProductCard from "@/components/shared/product-card";
 import {useIntersection} from "react-use";
-import {useAppSelector} from "@/app/store/appStore";
+import {useAppDispatch} from "@/app/hooks/reudxHooks";
+import {setProducts} from "@/entities/category";
 
 interface IProps {
     className?: string;
@@ -17,19 +18,15 @@ interface IProps {
 
 const ProductsGroupList: React.FC<IProps> = (props) => {
     const {className, title, listClassName, categoryId, items} = props;
-
-
+    const dispatch = useAppDispatch();
     const intersectionRef = React.useRef(null);
     const intersection = useIntersection(intersectionRef, {threshold: 0.4});
 
-
-
     React.useEffect(() => {
        if(intersection?.isIntersecting) {
-           console.log(title, categoryId);
+           dispatch(setProducts(categoryId));
        }
-    }, [categoryId, intersection?.isIntersecting, title]);
-
+    }, [categoryId, dispatch, intersection?.isIntersecting, title]);
 
     return (
         <div className={className} id={title} ref={intersectionRef}>

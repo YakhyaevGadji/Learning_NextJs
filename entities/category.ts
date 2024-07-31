@@ -1,7 +1,13 @@
+'use client';
+
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState = {
-    products: 0
+interface IInitialState {
+    products: number;
+}
+
+const initialState: IInitialState = {
+    products: 1
 };
 
 export const productSlice = createSlice({
