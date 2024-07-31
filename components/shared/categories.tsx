@@ -21,8 +21,6 @@ const cats = [
 const Categories: React.FC<Props> = ({className}) => {
     const activeIndex = useAppSelector((state) => state.product.products);
 
-    console.log(activeIndex);
-
     return (
         <div className={cn('inline-flex gap-1 bg-gray-50 p-1 rounded-2xl', className)}>
             {
