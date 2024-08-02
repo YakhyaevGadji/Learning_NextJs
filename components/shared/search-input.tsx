@@ -3,7 +3,9 @@
 import React from 'react';
 import {Search} from "lucide-react";
 import {cn} from "@/lib/utils";
-import {useClickAway} from "react-use";
+import {useClickAway, useDebounce} from "react-use";
+import Link from "next/link";
+import {ItemProduct, search} from "@/services/products";
 
 interface IProps {
     className?: string;
@@ -11,11 +13,23 @@ interface IProps {
 
 const SearchInput: React.FC<IProps> = ({className}) => {
     const [focus, setFocus] = React.useState(false);
+    const [searchValue, setSearchValue] = React.useState('');
+    const [products, setProducts] = React.useState<ItemProduct[]>([]);
     const ref = React.useRef(null);
+
+    console.log(products);
 
     useClickAway(ref, () => {
         setFocus(false);
     });
+
+    useDebounce(() => {
+        search(searchValue).then(items => {
+            setProducts(items);
+        });
+    }, 300, [searchValue]);
+
+    const renderProducts = products.length <= 5 ? products : products.slice(0, 5);
 
     return (
         <>
@@ -27,16 +41,32 @@ const SearchInput: React.FC<IProps> = ({className}) => {
                     className="rounded-2xl outline-none w-full bg-gray-100 pl-11"
                     type="text"
                     placeholder="Поиск..."
+                    onChange={(event) => setSearchValue(event.target.value)}
                 />
 
-                <div className={cn(
+                {renderProducts.length > 0 && (
+                    <div className={cn(
                     'absolute w-full bg-white rounded-xl py-2 top-14 shadow-md transition-all duration-2 invisible opacity-0 z-30',
                     focus && 'visible opacity-100 top-12'
                 )}>
-                    <div className="px-3 py-2 hover:bg-primary/10 cursor-pointer">
-
-                    </div>
+                    {renderProducts.map(product => {
+                        return (
+                            <Link
+                                key={product.id}
+                                className="flex items-center gap-3 px-3 py-2 hover:bg-primary/10 cursor-pointer"
+                                href={`/product/${product.title}`}
+                            >
+                                <img
+                                    className="rounded-sm h-8 w-8"
+                                    src={product.imgUrl}
+                                    alt={product.title}
+                                />
+                                <span>{product.title}</span>
+                            </Link>
+                        )
+                    })}
                 </div>
+                )}
             </div>
         </>
 
