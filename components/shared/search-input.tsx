@@ -17,8 +17,6 @@ const SearchInput: React.FC<IProps> = ({className}) => {
     const [products, setProducts] = React.useState<ItemProduct[]>([]);
     const ref = React.useRef(null);
 
-    console.log(products);
-
     useClickAway(ref, () => {
         setFocus(false);
     });
@@ -28,6 +26,12 @@ const SearchInput: React.FC<IProps> = ({className}) => {
             setProducts(items);
         });
     }, 300, [searchValue]);
+
+    const onClickItem = () => {
+        setFocus(false);
+        setSearchValue('');
+        setProducts([]);
+    };
 
     const renderProducts = products.length <= 5 ? products : products.slice(0, 5);
 
@@ -52,9 +56,10 @@ const SearchInput: React.FC<IProps> = ({className}) => {
                     {renderProducts.map(product => {
                         return (
                             <Link
+                                onClick={onClickItem}
                                 key={product.id}
                                 className="flex items-center gap-3 px-3 py-2 hover:bg-primary/10 cursor-pointer"
-                                href={`/product/${product.title}`}
+                                href={`/product/${product.id}`}
                             >
                                 <img
                                     className="rounded-sm h-8 w-8"
