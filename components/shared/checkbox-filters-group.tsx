@@ -11,9 +11,9 @@ interface Props {
     title: string;
     className?: string;
     items: TypeItem[];
-    defaultItems: TypeItem[];
+    defaultItems?: TypeItem[];
     limit?: number;
-    loading: boolean;
+    loading?: boolean;
     searchInputPlaceholder?: string;
     onClickCheckbox?: (id: string) => void
     onChange?: (value: string[]) => void;
@@ -39,7 +39,7 @@ const CheckboxFiltersGroup: React.FC<Props> = ({
     const [showAll, setShowAll] = React.useState(false);
     const [searchValue, setSearchValue] = React.useState('');
 
-    const list = showAll ? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLowerCase())) : defaultItems.slice(0, limit);
+    const list = showAll ? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLowerCase())) : (defaultItems || items).slice(0, limit);
 
     const onChangeSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.target.value);
