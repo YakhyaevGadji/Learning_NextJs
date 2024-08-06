@@ -9,11 +9,11 @@ interface Props {
     onAddId: (id: string) => void;
 }
 
-export const useFilterIngredients = (): Props => {
+export const useFilterIngredients = (values: string[] = []): Props => {
     const [ingredients, setIngredients] = React.useState<IIngredient[]>([]);
     const [loading, setLoading] = React.useState(true);
 
-    const [selectedIds, {toggle}] = useSet(new Set<string>([]));
+    const [selectedIds, {toggle}] = useSet(new Set<string>(values));
 
     React.useEffect(() => {
         async function fetchAllIngredients() {
