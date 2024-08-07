@@ -1,9 +1,15 @@
 import {instance} from "@/services/instance";
 
+type TypePriceItem = {
+    price: number;
+}
+
 export type ItemProduct = {
     id: number,
-    title: string,
+    name: string,
     imgUrl: string,
+    price: number,
+    items: TypePriceItem[]
 }
 
 export const search = async (query: string): Promise<ItemProduct[]> => {
