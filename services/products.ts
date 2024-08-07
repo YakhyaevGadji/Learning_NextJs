@@ -13,7 +13,7 @@ export type ItemProduct = {
 }
 
 export const search = async (query: string): Promise<ItemProduct[]> => {
-    const {data} = await instance.get<ItemProduct[]>(`/items?title=*${query}`)
+    const {data} = await instance.get<ItemProduct[]>(`/items?name=*${query}`)
 
     return data;
 };

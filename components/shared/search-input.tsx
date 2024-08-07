@@ -64,9 +64,9 @@ const SearchInput: React.FC<IProps> = ({className}) => {
                                 <img
                                     className="rounded-sm h-8 w-8"
                                     src={product.imgUrl}
-                                    alt={product.title}
+                                    alt={product.name}
                                 />
-                                <span>{product.title}</span>
+                                <span>{product.name}</span>
                             </Link>
                         )
                     })}
