@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from "@/components/shared/container";
-import Logo from "@/app/Logo.png";
+import Logo from "@/public/Logo.png";
 import Image from "next/image";
 import {cn} from "@/lib/utils";
 import {Button} from "@/components/ui/button";
