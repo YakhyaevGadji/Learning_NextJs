@@ -4,7 +4,7 @@ import {cn} from "@/lib/utils";
 interface IProps {
     className?: string;
     imgUrl: string;
-    size: number;
+    size: 20 | 30 | 40;
 }
 
 const ProductImage: React.FC<IProps> = ({imgUrl, size, className}) => {

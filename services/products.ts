@@ -1,6 +1,6 @@
 import {instance} from "@/services/instance";
 
-type TypePriceItem = {
+export type TypePriceItem = {
     price: number;
 }
 

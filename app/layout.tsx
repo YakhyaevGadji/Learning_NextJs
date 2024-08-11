@@ -14,7 +14,7 @@ export default function RootLayout({children}: Readonly<{
     return (
         <html lang="en">
         <head>
-            <link data-rh="true" rel="icon" href={"./logo.png"}/>
+            <link data-rh="true" rel="icon" href={"./Logo.png"}/>
             <title>Next pizza | Главная</title>
         </head>
             <body className={nunito.className}>
