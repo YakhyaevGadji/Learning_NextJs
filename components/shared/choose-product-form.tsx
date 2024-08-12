@@ -1,10 +1,7 @@
 import React from 'react';
 import {cn} from "@/lib/utils";
-import PizzaImage from "@/components/shared/pizza-image";
 import {Title} from "@/components/shared/title";
 import {Button} from "@/components/ui/button";
-import {size} from "@floating-ui/dom";
-// import {TypePriceItem} from "@/services/products";
 
 interface IProps {
     className?: string;
@@ -15,16 +12,20 @@ interface IProps {
     onClickAdd?: VoidFunction;
 }
 
-const ChoosePizzaForm: React.FC<IProps> = (props) => {
-    const {className, name, imgUrl, onClickAdd, ingredients} = props;
+const ChooseProductForm: React.FC<IProps> = (props) => {
+    const {className, name, imgUrl, /*onClickAdd*/ /*ingredients*/} = props;
 
     const textDetails = '30 см, традиционное тесто 30';
     const totalPrice = 350;
-    const size = 30;
 
     return (
         <div className={cn('flex flex-1', className)}>
-            <PizzaImage imgUrl={imgUrl} size={size}/>
+            <div className="flex items-center justify-center flex-1 relative w-full">
+                <img className="relative left-2 top-2 transition-all z-10 duration-300 w-[350px] h-[350px]"
+                     src={imgUrl}
+                     alt={name}
+                />
+            </div>
 
             <div className="w-[490px] bg-[#f7f6f5] p-7">
                 <Title className="font-extrabold mb-1" text={name} size="md"/>
@@ -39,4 +40,4 @@ const ChoosePizzaForm: React.FC<IProps> = (props) => {
     );
 };
 
-export default ChoosePizzaForm;
+export default ChooseProductForm;

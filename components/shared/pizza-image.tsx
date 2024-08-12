@@ -7,7 +7,7 @@ interface IProps {
     size: 20 | 30 | 40;
 }
 
-const ProductImage: React.FC<IProps> = ({imgUrl, size, className}) => {
+const PizzaImage: React.FC<IProps> = ({imgUrl, size, className}) => {
     return (
         <div className={cn('flex items-center justify-center flex-1 relative w-full', className)}>
             <img
@@ -26,4 +26,4 @@ const ProductImage: React.FC<IProps> = ({imgUrl, size, className}) => {
     );
 };
 
-export default ProductImage;
+export default PizzaImage;

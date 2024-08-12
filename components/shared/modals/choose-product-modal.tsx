@@ -1,12 +1,11 @@
 'use client';
 
 import React from 'react';
+import ChooseProductForm from "@/components/shared/choose-product-form";
 import {Dialog, DialogContent} from "@/components/ui/dialog";
 import {ItemProduct} from "@/services/products";
 import {cn} from "@/lib/utils";
 import {useRouter} from "next/navigation";
-import ChoosePizzaform from "@/components/shared/choose-pizza-form";
-
 
 interface IProps {
     className?: string;
@@ -19,7 +18,7 @@ const ChooseProductModal: React.FC<IProps> = ({className, product}) => {
     return (
         <Dialog open={Boolean(product)} onOpenChange={() => route.back()}>
             <DialogContent className={cn('p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden', className)}>
-                <ChoosePizzaform imgUrl={product.imgUrl} name={product.name} ingredients={[]}/>
+                <ChooseProductForm imgUrl={product.imgUrl} name={product.name} ingredients={[]}/>
             </DialogContent>
         </Dialog>
     );
