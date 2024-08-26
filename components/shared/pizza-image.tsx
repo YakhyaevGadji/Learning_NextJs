@@ -4,7 +4,7 @@ import {cn} from "@/lib/utils";
 interface IProps {
     className?: string;
     imgUrl: string;
-    size: 20 | 30 | 40;
+    size: number;
 }
 
 const PizzaImage: React.FC<IProps> = ({imgUrl, size, className}) => {
